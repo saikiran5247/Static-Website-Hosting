@@ -94,4 +94,5 @@ Go to **Route 53** → **Hosted Zones** → saikiranprojets.click
 
 
 ## **Live Website Preview**
-<img width="1919" height="1147" alt="output" src="https://github.com/user-attachments/assets/de050903-92aa-493a-9e17-e8d25f96dcc2" />
+<img width="1919" height="1152" alt="image" src="https://github.com/user-attachments/assets/9a27e8b2-ede7-4578-942d-20b5ba856c25" />
+
