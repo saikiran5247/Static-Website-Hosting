@@ -1,10 +1,288 @@
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>My First Website</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Raghumanda Sai Kiran — Resume</title>
+  <meta name="description" content="Resume of Raghumanda Sai Kiran - Cloud & DevOps Engineer" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    :root {
+      --accent:#0b63b8;
+      --muted:#6b7280;
+      --card-bg:#ffffff;
+      --page-bg:#f5f7fb;
+      --radius:14px;
+      --shadow: 0 8px 24px rgba(12,20,48,0.06);
+      --btn-shadow: 0 4px 12px rgba(11,99,184,0.18);
+      --icon-btn-size: 42px;
+    }
+    html, body {height: 100%;}
+    body {
+      margin:0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--page-bg);
+      color: #0f1724;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      padding: 36px;
+      display: flex;
+      justify-content: center;
+    }
+    .container { width: 100%; max-width: 950px; }
+
+    .top-controls {
+      position: fixed;
+      right: 20px;
+      top: 18px;
+      display: flex;
+      gap: 12px;
+      z-index: 60;
+    }
+    /* Theme button */
+    .icon-button {
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      width: var(--icon-btn-size);
+      height: var(--icon-btn-size);
+      border-radius: 14px;
+      box-shadow: var(--btn-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 24px;
+      transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+    }
+    .icon-button:hover {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(30, 124, 220, 0.18);
+    }
+    /* Download button - same style as mode, but blue! */
+    .download-btn {
+      background: #0b63b8;
+      border: none;
+      width: var(--icon-btn-size);
+      height: var(--icon-btn-size);
+      border-radius: 14px;
+      box-shadow: var(--btn-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      transition: background 0.22s, color 0.22s, box-shadow 0.22s;
+      padding: 0;
+    }
+    .download-btn:hover {
+      background: #094f91;
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(30, 124, 220, 0.20);
+    }
+
+    /* Resume styles, unchanged */
+    .card {
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      padding:28px 30px;
+      box-shadow:var(--shadow);
+      display:flex;
+      align-items:center;
+      gap:26px;
+      margin-bottom:28px;
+      transition:transform .35s ease, box-shadow .35s ease;
+    }
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 6px 18px rgba(4,20,40,0.08);
+      border: 4px solid #fff;
+    }
+    .header-right { flex: 1; display:flex; flex-direction:column; gap: 8px; }
+    .name { margin: 0; color: var(--accent); font-size: 2.05rem; letter-spacing: 0.5px; font-weight: 800; }
+    .links { margin-top: 6px; color: var(--muted); font-weight: 600; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .links a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    .links span { color: var(--muted); font-weight: 600; }
+    section { background: var(--card-bg); border-radius: 12px; padding: 20px 22px; margin-bottom: 18px; box-shadow: 0 6px 18px rgba(12,20,48,0.04); transition: all 0.45s ease; opacity: 0; transform: translateY(10px);}
+    section.show { opacity: 1; transform: none; }
+    h2 { margin: 0 0 12px 0; color: var(--accent); font-size: 1.1rem; font-weight: 700; border-bottom: 2px solid var(--accent); padding-bottom: 8px; display: inline-block; }
+    p, li { color: #152233; line-height: 1.6; margin: 0; }
+    ul { margin: 0; padding-left: 0; list-style: none; }
+    .project { margin-bottom:10px; }
+    .cert-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px dashed rgba(11,99,184,0.06);}
+    .cert-left { font-weight: 700; color: #13293b; }
+    .cert-btn { background: var(--accent); color:#fff; border: none; padding: 8px 12px; border-radius: 8px; text-decoration: none; font-weight: 700; box-shadow: var(--btn-shadow);}
+    .declaration { font-size: 0.95rem; color: var(--muted); }
+    body.dark { background: #0f1724; color: #e6eefb; }
+    body.dark .card, body.dark section { background: #0b1220; box-shadow: none; }
+    body.dark .name { color: #7fb6ff; }
+    body.dark .links a { color: #9ecbff; }
+    body.dark h2 { color: #7fb6ff; border-bottom-color: #7fb6ff; }
+    body.dark p, body.dark li, body.dark .cert-left, body.dark .declaration, body.dark .project, body.dark ul, body.dark .skill-pill { color: #e6eefb;}
+    body.dark .links span { color: #aecfff; }
+    body.dark .cert-btn { background: #2c6bd6; }
+    /* Make theme and download button reverse color for dark */
+    body.dark .icon-button { background: #192442; color: #f9dc5c;}
+    body.dark .icon-button:hover { background: #233399; color: #fff;}
+    body.dark .download-btn { background: #192442; color: #0b63b8;}
+    body.dark .download-btn:hover { background: #386be0; color: #fff;}
+    @media (max-width:720px) {
+      .card { flex-direction:row; gap:16px; padding:18px;}
+      .header-right { align-items:flex-start;}
+      .name {font-size:1.5rem;}
+      .avatar { width:96px; height:96px;}
+      .top-controls { right:12px; top:12px; }
+      .icon-button, .download-btn { width:34px; height:34px; font-size:18px;}
+    }
+  </style>
 </head>
 <body>
-  <h1>I'm on Vacation !</h1>
-  <p>Hosted on Amazon S3!</p>
-  <img src="vacation.jpg">
+  <div class="top-controls" aria-hidden="false">
+    <button id="themeToggleBtn" aria-label="Toggle dark/light mode" class="icon-button" title="Toggle Dark/Light Mode">
+      <i id="themeIcon" class="fa fa-moon"></i>
+    </button>
+    <button id="downloadBtn" class="download-btn" title="Download Resume">
+      <i class="fa fa-download"></i>
+    </button>
+  </div>
+
+  <main class="container" role="main">
+    <header class="card" role="banner">
+      <img src="1671334831765.jpeg" alt="Profile photo of Raghumanda Sai Kiran" class="avatar" />
+      <div class="header-right">
+        <h1 class="name">RAGHUMANDA SAI KIRAN</h1>
+        <div class="links" aria-label="contact links">
+          <a href="mailto:saikiran3829@gmail.com">Email</a>
+          <span>|</span>
+          <a href="http://www.linkedin.com/in/saikiran5247" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <span>|</span>
+          <a href="http://www.github.com/saikiran5247" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <span>|</span>
+          <span>✆ (+91) 720 707 3829</span>
+        </div>
+      </div>
+    </header>
+    <section id="career">
+      <h2>Career Objective</h2>
+      <p style="margin-top:12px;">
+        Eager to apply my problem-solving skills to contribute innovative engineering projects and seek challenging opportunities where I can fully use my skills for the success of the organization.
+      </p>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <ul style="margin-top:12px;line-height:1.8;">
+        <li><strong>Lendi Institute of Engineering and Technology</strong>, B.Tech, Computer Science and Engineering (2022 – present) — CGPA: <strong>7.65</strong></li>
+        <li><strong>Sainik School Korukonda</strong>, Senior Secondary (2019 – 2021) — Percentage: <strong>87.2</strong></li>
+        <li><strong>Sainik School Korukonda</strong>, Secondary (2018 – 2019) — Percentage: <strong>85.8</strong></li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div style="margin-top:12px;">
+        <div class="project">
+          <strong>CI/CD PIPELINE</strong> — Built a complete CI/CD pipeline to automate the deployment of a Java web application using Jenkins and Tomcat on AWS EC2.
+          <div style="margin-top:8px;color:var(--muted);font-weight:700;">Tools &amp; technologies: Jenkins, Git, Maven, Apache Tomcat, AWS EC2, Linux</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <div style="margin-top:12px;">
+        <div><strong>Languages:</strong> C, Python, SQL</div>
+        <div style="margin-top:8px;"><strong>Developer Tools:</strong> Git, Linux Shell</div>
+        <div style="margin-top:8px;"><strong>Cloud:</strong> AWS (Foundational Knowledge)</div>
+        <div style="margin-top:8px;"><strong>Areas of Interest:</strong> Cloud, DevOps</div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <h2>Certifications</h2>
+      <div style="margin-top:12px;">
+        <div class="cert-item">
+          <div class="cert-left">AWS Certified Cloud Practitioner – AWS, Aug 2025</div>
+          <div><a class="cert-btn" href="https://saikiran-certificates.s3.ap-south-1.amazonaws.com/AWS+Certified+Cloud+Practitioner+certificate.pdf" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-left">AWS Cloud Virtual Internship – AWS, Jun 2024</div>
+          <div><a class="cert-btn" href="https://saikiran-certificates.s3.ap-south-1.amazonaws.com/aws+cloud+virtual+internship.pdf" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-left">Advanced Communication Skills using AI – ORAI, Dec 2023</div>
+          <div><a class="cert-btn" href="https://saikiran-certificates.s3.ap-south-1.amazonaws.com/Orai.pdf" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-left">Python Essentials – CISCO, Jun 2025</div>
+          <div><a class="cert-btn" href="https://saikiran-certificates.s3.ap-south-1.amazonaws.com/python-1.pdf" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
+        </div>
+        <div class="cert-item" style="border-bottom:none;">
+          <div class="cert-left">NCC ‘A’ and ‘B’ Certificate Holder</div>
+          <div><a class="cert-btn" href="https://saikiran-certificates.s3.ap-south-1.amazonaws.com/ncc.pdf" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="declaration">
+      <h2>Declaration</h2>
+      <p class="declaration" style="margin-top:12px;">
+        I hereby declare that the information provided above is true and correct to the best of my knowledge and belief.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    (function() {
+      const body = document.body;
+      const themeBtn = document.getElementById('themeToggleBtn');
+      const themeIcon = document.getElementById('themeIcon');
+      const downloadBtn = document.getElementById('downloadBtn');
+
+      // Initialize mode from localStorage
+      const savedMode = localStorage.getItem('site-mode');
+      if (savedMode === 'dark') {
+        body.classList.add('dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      }
+
+      // Toggle mode & icon on button click
+      themeBtn.addEventListener('click', () => {
+        const isDark = body.classList.toggle('dark');
+        if (isDark) {
+          themeIcon.classList.replace('fa-moon', 'fa-sun');
+          localStorage.setItem('site-mode', 'dark');
+        } else {
+          themeIcon.classList.replace('fa-sun', 'fa-moon');
+          localStorage.setItem('site-mode', 'light');
+        }
+      });
+
+      // Download button click triggers print with top controls hidden for clean PDF
+      downloadBtn.addEventListener('click', () => {
+        document.querySelector('.top-controls').style.visibility = 'hidden';
+        setTimeout(() => {
+          window.print();
+          document.querySelector('.top-controls').style.visibility = 'visible';
+        }, 250);
+      });
+
+      // Reveal sections with staggered fade in
+      const sections = document.querySelectorAll('main section');
+      window.addEventListener('load', () => {
+        sections.forEach((section, i) => {
+          setTimeout(() => section.classList.add('show'), i * 140);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
